@@ -126,5 +126,52 @@ public class ValueTest {
 		String testString = test.asString();
 		assert (test == PhotoId.getIdFromString(testString));
 	}
-
+	
+	/**
+	 * Checks distance between two points
+	 */
+	@Test
+	public void testDistanceNotZero() {
+		Coordinate coordinates = new Coordinate(1,1,1);
+		Location locationOne = new Location(); //Coordinates are 0,0,0
+		Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
+	
+		assert(locationOne.coordinates.getDistance(locationTwo.coordinates) == Math.sqrt(3));
+	}
+	
+	/**
+	 * Checks distance between two points for distance = 0
+	 */
+	@Test
+	public void testDistanceZero() {
+		Location locationOne = new Location(); //Coordinates are 0,0,0
+		Location locationTwo = new Location(); //Coordinates are 0,0,0
+	
+		assert(locationOne.coordinates.getDistance(locationTwo.coordinates) == 0);
+	}
+	
+	/**
+	 * Checks distance isEqual for case: true
+	 */
+	@Test
+	public void testIsEqualTrue() {
+		Coordinate coordinates = new Coordinate(23,45,56);
+		Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
+		Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
+	
+		assert(locationOne.coordinates.isEqual(locationTwo.coordinates));
+	}
+	
+	/**
+	 * Checks distance isEqual for case: false
+	 */
+	@Test
+	public void testIsEqualFalse() {
+		Coordinate coordinatesOne = new Coordinate(23,45,56);
+		Coordinate coordinatesTwo = new Coordinate(56,45,23);
+		Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
+		Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
+	
+		assert(!locationOne.coordinates.isEqual(locationTwo.coordinates));
+	}
 }

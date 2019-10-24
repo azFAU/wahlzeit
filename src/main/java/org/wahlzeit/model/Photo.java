@@ -122,6 +122,11 @@ public class Photo extends DataObject {
 	 */
 	protected String ending = "jpg";
 	
+	/*
+	 * Location where the photo was taken
+	 */
+	protected Location location = new Location();
+	
 	/**
 	 *
 	 */
@@ -160,6 +165,20 @@ public class Photo extends DataObject {
 	 */
 	public void setImage(PhotoSize photoSize, Image image) {
 		this.images.put(photoSize, image);
+	}
+	
+	/**
+	 * @methodtype set
+	 */
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	/**
+	 * @methodtype get
+	 */
+	public Location getLocation() {
+		return this.location;
 	}
 
 	/**
