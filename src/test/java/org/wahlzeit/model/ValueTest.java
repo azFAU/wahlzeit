@@ -136,7 +136,7 @@ public class ValueTest {
 		Location locationOne = new Location(); //Coordinates are 0,0,0
 		Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
 	
-		assert(locationOne.coordinates.getDistance(locationTwo.coordinates) == Math.sqrt(3));
+		assert(locationOne.getCoordinate().getDistance(locationTwo.getCoordinate()) == Math.sqrt(3));
 	}
 	
 	/**
@@ -147,7 +147,7 @@ public class ValueTest {
 		Location locationOne = new Location(); //Coordinates are 0,0,0
 		Location locationTwo = new Location(); //Coordinates are 0,0,0
 	
-		assert(locationOne.coordinates.getDistance(locationTwo.coordinates) == 0);
+		assert(locationOne.getCoordinate().getDistance(locationTwo.getCoordinate()) == 0);
 	}
 	
 	/**
@@ -159,7 +159,7 @@ public class ValueTest {
 		Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
 		Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
 	
-		assert(locationOne.coordinates.isEqual(locationTwo.coordinates));
+		assert(locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
 	}
 	
 	/**
@@ -172,6 +172,6 @@ public class ValueTest {
 		Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
 		Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
 	
-		assert(!locationOne.coordinates.isEqual(locationTwo.coordinates));
+		assert(!locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
 	}
 }

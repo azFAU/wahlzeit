@@ -27,6 +27,8 @@ import org.wahlzeit.services.EmailAddress;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.hsqldb.lib.Sort.StringComparator;
+
 public class EmailServiceTest {
 
 	EmailService emailService = null;
@@ -53,6 +55,28 @@ public class EmailServiceTest {
 	public void testSendValidEmail() {
 		try {
 			assertTrue(emailService.sendEmailIgnoreException(validAddress, validAddress, "hi", "test"));
+		} catch (Exception ex) {
+			Assert.fail("Silent mode does not allow exceptions");
+		}
+	}
+	
+	/*
+	 * Checks, if correct EmailService was created
+	 */
+	@Test
+	public void checkDefaultServiceManager() {
+		try {
+			assertTrue(emailService.getClass().getName().equals(LoggingEmailService.class.getName()));
+			assertFalse(emailService.getClass().getName().equals(SmtpEmailService.class.getName()));
+			assertFalse(emailService.getClass().getName().equals(MockEmailService.class.getName()));
+			emailService = new SmtpEmailService();
+			assertFalse(emailService.getClass().getName().equals(LoggingEmailService.class.getName()));
+			assertTrue(emailService.getClass().getName().equals(SmtpEmailService.class.getName()));
+			assertFalse(emailService.getClass().getName().equals(MockEmailService.class.getName()));
+			emailService = new MockEmailService();
+			assertFalse(emailService.getClass().getName().equals(LoggingEmailService.class.getName()));
+			assertFalse(emailService.getClass().getName().equals(SmtpEmailService.class.getName()));
+			assertTrue(emailService.getClass().getName().equals(MockEmailService.class.getName()));
 		} catch (Exception ex) {
 			Assert.fail("Silent mode does not allow exceptions");
 		}

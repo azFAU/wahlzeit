@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.wahlzeit.model.AccessRightsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.004">
+  <properties/>
+  <testcase name="noneStringShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="CapitalAdministratorShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="getFromIntShouldMatchEnums" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="CapitalModeratorShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="CapitalGuestShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="CapitalUserShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="testHasRights" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="tooBigIndexShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="nullStringShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.001"/>
+  <testcase name="negativeIndexShouldThrowException" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <testcase name="getFromStringShouldMatchEnums" classname="org.wahlzeit.model.AccessRightsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

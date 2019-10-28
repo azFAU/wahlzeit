@@ -19,7 +19,7 @@ public class Coordinate {
 		y = 0;
 		z = 0;
 	}
-	
+
 	/*
 	 * Constructor of coordinate object with given coordinates
 	 */
@@ -50,22 +50,33 @@ public class Coordinate {
 		return this.z;
 	}
 	
+	/**
+	 * @methodtype set
+	 */
+	public void setXValue(double x) {
+		this.x = x;
+	}	
+	
+	/**
+	 * @methodtype set
+	 */
+	public void setYValue(double y) {
+		this.y = y;
+	}	
+	
+	/**
+	 * @methodtype set
+	 */
+	public void setZValue(double z) {
+		this.z = z;
+	}
+	
 	/*
 	 * Compares all 3 values of the two coordinate objects
 	 * returns true if all values are the same
 	 */
 	public boolean isEqual(Coordinate coordinates) {
-		boolean isEqual = false;
-		
-		if(this.x == coordinates.getXValue()) {
-			if(this.y == coordinates.getYValue()) {
-				if(this.z == coordinates.getZValue()) {
-					isEqual = true;
-				}
-			}
-		}
-		
-		return isEqual;
+		return this.equals(coordinates);
 	}
 	
 	/*
@@ -85,5 +96,37 @@ public class Coordinate {
 		distance = Math.sqrt(distance);
 		
 		return distance;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(x);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(y);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(z);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coordinate other = (Coordinate) obj;
+		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+			return false;
+		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+			return false;
+		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
+			return false;
+		return true;
 	}
 }

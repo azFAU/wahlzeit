@@ -65,6 +65,16 @@ public class EmailAddressTest extends TestCase {
 	public void testEmptyEmailAddress() {
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
+	
+	/**
+	 *	Test validity of E-Mail addresses
+	 */
+	public void testEmailAddressValidity() {
+		assertTrue(EmailAddress.doGetFromString("xyz@yahoo.de").isValid());
+		assertFalse(EmailAddress.doGetFromString("").isValid());
+		assertTrue(EmailAddress.doGetFromString("xyz@bingo.com").isValid());
+		assertTrue(EmailAddress.doGetFromString("xyz.abc@nihon.co.jp").isValid());
+	}
 
 }
 

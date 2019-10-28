@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.wahlzeit.model.GenderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.001">
+  <properties/>
+  <testcase name="testGetFromString" classname="org.wahlzeit.model.GenderTest" time="0.001"/>
+  <testcase name="testGetFromInt" classname="org.wahlzeit.model.GenderTest" time="0.0"/>
+  <testcase name="tooBigValueShouldThrowException" classname="org.wahlzeit.model.GenderTest" time="0.0"/>
+  <testcase name="negativeValueShouldThrowException" classname="org.wahlzeit.model.GenderTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

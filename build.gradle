@@ -61,7 +61,8 @@ dependencies {
 
 test {
     filter {
-        includeTestsMatching "org.wahlzeit.*"
+        include '**/AllTests.class'
+        //includeTestsMatching "org.wahlzeit.model.persistence.*"
     }
     testLogging {
             events "passed", "skipped", "failed"

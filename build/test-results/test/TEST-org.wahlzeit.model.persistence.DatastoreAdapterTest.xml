@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.wahlzeit.model.persistence.DatastoreAdapterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.059">
+  <properties/>
+  <testcase name="testUpperSizeLimit" classname="org.wahlzeit.model.persistence.DatastoreAdapterTest" time="0.009"/>
+  <testcase name="testWriteImage" classname="org.wahlzeit.model.persistence.DatastoreAdapterTest" time="0.014"/>
+  <testcase name="testReadImage" classname="org.wahlzeit.model.persistence.DatastoreAdapterTest" time="0.023"/>
+  <testcase name="testImageExistence" classname="org.wahlzeit.model.persistence.DatastoreAdapterTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.model.persistence.DatastoreAdapter doReadImage
+INFO: level=sl, session=no session, client=anon, does not exist!
+Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.model.persistence.DatastoreAdapter doReadImage
+INFO: level=sl, session=no session, client=anon, does not exist!
+Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.model.persistence.DatastoreAdapter doReadImage
+INFO: level=sl, session=no session, client=anon, does not exist!
+Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.model.persistence.DatastoreAdapter doReadImage
+INFO: level=sl, session=no session, client=anon, does not exist!
+Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.model.persistence.DatastoreAdapter doReadImage
+INFO: level=sl, session=no session, client=anon, does not exist!
+]]></system-err>
+</testsuite>
