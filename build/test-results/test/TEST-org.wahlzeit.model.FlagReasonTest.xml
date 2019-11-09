@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wahlzeit.model.FlagReasonTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.005">
+<testsuite name="org.wahlzeit.model.FlagReasonTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2019-11-09T13:48:59" hostname="DESKTOP-8AA1N5N" time="0.004">
   <properties/>
-  <testcase name="testAsInt" classname="org.wahlzeit.model.FlagReasonTest" time="0.002"/>
+  <testcase name="testAsInt" classname="org.wahlzeit.model.FlagReasonTest" time="0.001"/>
   <testcase name="testAsString" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>
   <testcase name="testGetFromString" classname="org.wahlzeit.model.FlagReasonTest" time="0.001"/>
-  <testcase name="testGetFromInt" classname="org.wahlzeit.model.FlagReasonTest" time="0.001"/>
-  <testcase name="tooBigIndexShouldCauseException" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>
+  <testcase name="testGetFromInt" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>
+  <testcase name="tooBigIndexShouldCauseException" classname="org.wahlzeit.model.FlagReasonTest" time="0.001"/>
   <testcase name="testInvalidGetFromString" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>
   <testcase name="negativeIndexShouldCauseException" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>
   <testcase name="testGetValues" classname="org.wahlzeit.model.FlagReasonTest" time="0.0"/>

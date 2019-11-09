@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wahlzeit.model.GuestTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.019">
+<testsuite name="org.wahlzeit.model.GuestTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-09T13:48:59" hostname="DESKTOP-8AA1N5N" time="0.021">
   <properties/>
-  <testcase name="testNameGeneration" classname="org.wahlzeit.model.GuestTest" time="0.019"/>
+  <testcase name="testNameGeneration" classname="org.wahlzeit.model.GuestTest" time="0.021"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@194a3ca6
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@743b5d97
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.User@5a59a519
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@28e1df5b
+  <system-err><![CDATA[Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@5702430b
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@35034253
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.User@39bfda71
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@7abbf6a3
 ]]></system-err>
 </testsuite>

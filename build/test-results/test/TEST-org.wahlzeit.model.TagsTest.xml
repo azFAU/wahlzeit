@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wahlzeit.model.TagsTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:27" hostname="DESKTOP-8AA1N5N" time="0.009">
+<testsuite name="org.wahlzeit.model.TagsTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2019-11-09T13:49:00" hostname="DESKTOP-8AA1N5N" time="0.005">
   <properties/>
   <testcase name="testTagList" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
-  <testcase name="testAsTag" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
+  <testcase name="testAsTag" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testAsArray1" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testAsArray2" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testAsString" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testUsesCustomSeparator" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
-  <testcase name="testGetSize" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
-  <testcase name="testGetTagListFromString" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
-  <testcase name="testHasTag1" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
-  <testcase name="testHasTag2" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
+  <testcase name="testGetSize" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
+  <testcase name="testGetTagListFromString" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
+  <testcase name="testHasTag1" classname="org.wahlzeit.model.TagsTest" time="0.001"/>
+  <testcase name="testHasTag2" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testHasTag3" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testHasTag4" classname="org.wahlzeit.model.TagsTest" time="0.0"/>
   <testcase name="testEquals" classname="org.wahlzeit.model.TagsTest" time="0.0"/>

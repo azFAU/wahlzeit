@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wahlzeit.handlers.TellFriendTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-10-28T17:02:25" hostname="DESKTOP-8AA1N5N" time="1.294">
+<testsuite name="org.wahlzeit.handlers.TellFriendTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-11-09T13:48:58" hostname="DESKTOP-8AA1N5N" time="1.205">
   <properties/>
-  <testcase name="testTellFriendMakeWebPart" classname="org.wahlzeit.handlers.TellFriendTest" time="1.276"/>
-  <testcase name="testTellFriendPost" classname="org.wahlzeit.handlers.TellFriendTest" time="0.017"/>
+  <testcase name="testTellFriendMakeWebPart" classname="org.wahlzeit.handlers.TellFriendTest" time="1.184"/>
+  <testcase name="testTellFriendPost" classname="org.wahlzeit.handlers.TellFriendTest" time="0.021"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Okt. 28, 2019 5:02:26 NACHM. com.google.appengine.api.datastore.dev.LocalDatastoreService init
+  <system-err><![CDATA[Nov. 09, 2019 1:48:58 NACHM. com.google.appengine.api.datastore.dev.LocalDatastoreService init
 INFO: Local Datastore initialized: 
 	Type: High Replication
 	Storage: In-memory
-Okt. 28, 2019 5:02:26 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@1e833bd4
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.handlers.TellFriendFormHandler doHandlePost
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@41a30927
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.handlers.TellFriendFormHandler doHandlePost
 INFO: level=ul, session=testContext, client=guest#1, action=TellFriend, recipient=engel@himmel.de
-Okt. 28, 2019 5:02:27 NACHM. com.google.appengine.api.datastore.dev.LocalDatastoreService init
+Nov. 09, 2019 1:48:59 NACHM. com.google.appengine.api.datastore.dev.LocalDatastoreService init
 INFO: Local Datastore initialized: 
 	Type: High Replication
 	Storage: In-memory
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.services.ObjectManager writeObject
-INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@1a01e772
-Okt. 28, 2019 5:02:27 NACHM. org.wahlzeit.handlers.TellFriendFormHandler doHandlePost
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.services.ObjectManager writeObject
+INFO: level=sl, session=no session, client=anon, Datastore: Write object of type=org.wahlzeit.model.Guest@79b3e12d
+Nov. 09, 2019 1:48:59 NACHM. org.wahlzeit.handlers.TellFriendFormHandler doHandlePost
 INFO: level=ul, session=testContext, client=guest#2, action=TellFriend, recipient=fan@yahoo.com
 ]]></system-err>
 </testsuite>
