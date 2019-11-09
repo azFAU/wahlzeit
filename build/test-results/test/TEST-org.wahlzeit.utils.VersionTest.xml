@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.wahlzeit.utils.VersionTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2019-11-09T13:49:00" hostname="DESKTOP-8AA1N5N" time="0.005">
+<testsuite name="org.wahlzeit.utils.VersionTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2019-11-09T15:06:32" hostname="DESKTOP-8AA1N5N" time="0.013">
   <properties/>
   <testcase name="testInvalidGetVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
-  <testcase name="testValidGetVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
-  <testcase name="testGetMinorVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
-  <testcase name="testGetRevisionVersionAsIntWithEmptyString" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
+  <testcase name="testValidGetVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
+  <testcase name="testGetMinorVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
+  <testcase name="testGetRevisionVersionAsIntWithEmptyString" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
   <testcase name="testGetMinorNumberAsIntWithFloatingPointNumber" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
-  <testcase name="testInvalidGetMajorVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
+  <testcase name="testInvalidGetMajorVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <testcase name="testGetMinorNumberAsIntWithBrokenString" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <testcase name="testGetRevisionVersionAsIntWithMissingRevision" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <testcase name="testValidGetMajorVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <testcase name="testGetRevisionVersionAsInt" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <testcase name="testGetRevisionVersionAsIntWithCharacter" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
-  <testcase name="testGetMinorNumberAsIntWithMissingMinorNumber" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
+  <testcase name="testGetMinorNumberAsIntWithMissingMinorNumber" classname="org.wahlzeit.utils.VersionTest" time="0.001"/>
   <testcase name="testGetMinorNumberAsIntWithCharacter" classname="org.wahlzeit.utils.VersionTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

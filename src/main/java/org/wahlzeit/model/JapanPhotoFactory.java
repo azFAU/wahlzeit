@@ -30,7 +30,7 @@ public class JapanPhotoFactory extends PhotoFactory {
      * Public singleton access method.
      * @methodtype get
      */
-    public static synchronized PhotoFactory getInstance() {
+    public static synchronized JapanPhotoFactory getInstance() {
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
             setInstance(new JapanPhotoFactory());

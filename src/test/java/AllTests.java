@@ -7,6 +7,9 @@ import org.wahlzeit.model.FlagReasonTest;
 import org.wahlzeit.model.GenderTest;
 import org.wahlzeit.model.GuestTest;
 import org.wahlzeit.model.PhotoFilterTest;
+import org.wahlzeit.model.JapanPhotoTest;
+import org.wahlzeit.model.JapanPhotoManagerTest;
+import org.wahlzeit.model.JapanPhotoFactoryTest;
 import org.wahlzeit.model.TagsTest;
 import org.wahlzeit.model.UserStatusTest;
 import org.wahlzeit.model.ValueTest;
@@ -25,8 +28,10 @@ import org.wahlzeit.utils.VersionTest;
 	GenderTest.class,
 	GuestTest.class,
 	DatastoreAdapterTest.class,
-	//AbstractAdapterTest.class,
 	PhotoFilterTest.class,
+	JapanPhotoTest.class,
+	JapanPhotoManagerTest.class,
+	JapanPhotoFactoryTest.class,
 	TagsTest.class,
 	UserStatusTest.class,
 	ValueTest.class,
