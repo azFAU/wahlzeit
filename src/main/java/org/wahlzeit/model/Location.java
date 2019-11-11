@@ -28,9 +28,11 @@ public class Location {
 	}
 	
 	public void setCoordinate(ICoordinate coordinates) {
+		
 		if (coordinates == null) {
 			throw new IllegalArgumentException("Argument for coordinates shouldn't be null");
 		}
+		
 		this.coordinates = coordinates;
 	}
 
