@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class SphericalCoordinate extends Coordinate {
+public class SphericalCoordinate implements ICoordinate {
 	
 	protected double phi;
 	protected double theta;
@@ -60,6 +60,15 @@ public class SphericalCoordinate extends Coordinate {
 		this.theta = theta;
 	}
 	
+	public double getCartesianDistance(ICoordinate coordinates) {
+		CartesianCoordinate cartesianCoordinates = coordinates.asCartesianCoordinate();
+		return doGetCartesianDistance(cartesianCoordinates);	
+	}
+	
+	public double getCentralAngle(ICoordinate coordinates) {
+		return doGetCentralAngle(coordinates);
+	}
+	
 	public double calculateRadius() {
 		return doCalculateRadius();
 	}
@@ -82,7 +91,6 @@ public class SphericalCoordinate extends Coordinate {
 		return new CartesianCoordinate(x,y,z);
 	}
 
-	@Override
 	public double doGetCartesianDistance(CartesianCoordinate coordinates) {
 		return coordinates.doGetCartesianDistance(this.asCartesianCoordinate());
 	}
@@ -92,7 +100,6 @@ public class SphericalCoordinate extends Coordinate {
 		return this;
 	}
 
-	@Override
 	public double doGetCentralAngle(ICoordinate coordinates) {
 		
 		CartesianCoordinate thisCoordinate = this.asCartesianCoordinate();

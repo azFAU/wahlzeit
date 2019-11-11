@@ -5,7 +5,7 @@ import java.lang.Math;
 /*
  * This class specifies specific cartesian coordinates x, y, z
  */
-public class CartesianCoordinate extends Coordinate {
+public class CartesianCoordinate implements ICoordinate {
 	protected double x;
 	protected double y;
 	protected double z;
@@ -71,6 +71,15 @@ public class CartesianCoordinate extends Coordinate {
 		this.z = z;
 	}
 	
+	public double getCartesianDistance(ICoordinate coordinates) {
+		CartesianCoordinate cartesianCoordinates = coordinates.asCartesianCoordinate();
+		return doGetCartesianDistance(cartesianCoordinates);	
+	}
+	
+	public double getCentralAngle(ICoordinate coordinates) {
+		return doGetCentralAngle(coordinates);
+	}
+	
 	/*
 	 * Compares all 3 values of the two coordinate objects
 	 * returns true if all values are the same
@@ -112,7 +121,6 @@ public class CartesianCoordinate extends Coordinate {
 		return this;
 	}
 
-	@Override
 	public double doGetCartesianDistance(CartesianCoordinate coordinates) {
 		return getDistance(coordinates);
 	}
@@ -127,7 +135,6 @@ public class CartesianCoordinate extends Coordinate {
 		return new SphericalCoordinate(phi, theta, radius);
 	}
 
-	@Override
 	public double doGetCentralAngle(ICoordinate coordinates) {
 		
 		double cartesianSubtraction = this.doGetCartesianDistance(coordinates.asCartesianCoordinate());
