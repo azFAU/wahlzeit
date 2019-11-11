@@ -131,31 +131,31 @@ public class ValueTest {
 	 * Checks distance between two points
 	 */
 	@Test
-	public void testDistanceNotZero() {
-		Coordinate coordinates = new Coordinate(1,1,1);
+	public void testCartesianDistanceNotZero() {
+		CartesianCoordinate coordinates = new CartesianCoordinate(1,1,1);
 		Location locationOne = new Location(); //Coordinates are 0,0,0
 		Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
 	
-		assert(locationOne.getCoordinate().getDistance(locationTwo.getCoordinate()) == Math.sqrt(3));
+		assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == Math.sqrt(3));
 	}
 	
 	/**
 	 * Checks distance between two points for distance = 0
 	 */
 	@Test
-	public void testDistanceZero() {
+	public void testCartesianDistanceZero() {
 		Location locationOne = new Location(); //Coordinates are 0,0,0
 		Location locationTwo = new Location(); //Coordinates are 0,0,0
 	
-		assert(locationOne.getCoordinate().getDistance(locationTwo.getCoordinate()) == 0);
+		assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == 0);
 	}
 	
 	/**
 	 * Checks distance isEqual for case: true
 	 */
 	@Test
-	public void testIsEqualTrue() {
-		Coordinate coordinates = new Coordinate(23,45,56);
+	public void testIsEqualCartesianTrue() {
+		CartesianCoordinate coordinates = new CartesianCoordinate(23,45,56);
 		Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
 		Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
 	
@@ -166,12 +166,106 @@ public class ValueTest {
 	 * Checks distance isEqual for case: false
 	 */
 	@Test
-	public void testIsEqualFalse() {
-		Coordinate coordinatesOne = new Coordinate(23,45,56);
-		Coordinate coordinatesTwo = new Coordinate(56,45,23);
+	public void testIsEqualCartesianFalse() {
+		CartesianCoordinate coordinatesOne = new CartesianCoordinate(23,45,56);
+		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(56,45,23);
 		Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
 		Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
 	
 		assert(!locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
+	}
+	
+	/**
+	 * Checks distance between two points
+	 */
+	@Test
+	public void testSphericalDistanceNotZero() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+	
+		assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+	}
+	
+	/**
+	 * Checks distance between two points for distance = 0
+	 */
+	@Test
+	public void testSphericalDistanceZero() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+	
+		assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+	}
+	
+	/**
+	 * Checks distance isEqual for case: true
+	 */
+	@Test
+	public void testIsEqualSphericalTrue() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+	
+		assert(coordinatesOne.isEqual(coordinatesTwo));
+	}
+	
+	/**
+	 * Checks distance isEqual for case: false
+	 */
+	@Test
+	public void testIsEqualSphericalFalse() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 1, 0);
+	
+		assert(!coordinatesOne.isEqual(coordinatesTwo));
+	}
+	
+	/**
+	 * Checks Conversion from Cartesian to Spherical
+	 */
+	@Test
+	public void testCartesianSphericalConversion() {
+
+		CartesianCoordinate coordinatesOne = new CartesianCoordinate(0,0,0);
+		SphericalCoordinate coordinatesTwo = coordinatesOne.asSphericalCoordinate();
+		assert(coordinatesTwo.isEqual(coordinatesOne));
+
+		CartesianCoordinate coordinatesThree = new CartesianCoordinate(1,2,3);
+		SphericalCoordinate coordinatesFour = coordinatesThree.asSphericalCoordinate();
+		assert(coordinatesFour.isEqual(coordinatesThree));
+	}
+	
+	/**
+	 * Checks conversion from Spherical to Cartesian
+	 */
+	@Test
+	public void testSphericalCartesianConversion() {
+
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
+		CartesianCoordinate coordinatesTwo = coordinatesOne.asCartesianCoordinate();
+		assert(coordinatesTwo.isEqual(coordinatesOne));
+
+		SphericalCoordinate coordinatesThree = new SphericalCoordinate(4,5,6);
+		CartesianCoordinate coordinatesFour = coordinatesThree.asCartesianCoordinate();
+		assert(coordinatesFour.isEqual(coordinatesThree));
+	}
+
+	/**
+	 * Checks distance converting from Cartesian to Spherical
+	 */
+	@Test
+	public void testCartesianSphericalDistance() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
+		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,2,0);
+		assert(coordinatesTwo.getCartesianDistance(coordinatesOne) == 2);
+	}
+
+	/**
+	 * Checks distance converting from Spherical to Cartesian
+	 */
+	@Test
+	public void testSphericalCartesianDistance() {
+		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,1);
+		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,0,0);
+		assert(coordinatesOne.getCartesianDistance(coordinatesTwo) == 1);
 	}
 }

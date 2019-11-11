@@ -13,7 +13,7 @@ public class Location {
 	private Coordinate coordinates;
 	
 	public Location () {
-		coordinates = new Coordinate();
+		coordinates = new CartesianCoordinate();
 	}
 	
 	/*
