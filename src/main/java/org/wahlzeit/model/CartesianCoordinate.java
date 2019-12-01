@@ -33,13 +33,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 * @methodtype get
 	 */
 	public double getXValue() {
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.x;
 	}	
 
 	/**
 	 * @methodtype get
 	 */
-	public double getYValue() {
+	public double getYValue() {		
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.y;
 	}	
 
@@ -47,13 +53,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 * @methodtype get
 	 */
 	public double getZValue() {
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.z;
 	}
 
 	/**
 	 * @methodtype set
 	 */
-	public void setXValue(double x) {
+	public void setXValue(double x) {		
+		//Preconditions
+		assertClassInvariants();
+		
 		this.x = x;
 	}	
 
@@ -61,6 +73,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 * @methodtype set
 	 */
 	public void setYValue(double y) {
+		//Preconditions
+		assertClassInvariants();
+		
 		this.y = y;
 	}	
 
@@ -68,6 +83,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 * @methodtype set
 	 */
 	public void setZValue(double z) {
+		//Preconditions
+		assertClassInvariants();
+		
 		this.z = z;
 	}
 
@@ -83,6 +101,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 * Gets distance between two coordinate objects
 	 */
 	public double getDistance(CartesianCoordinate coordinates) {
+		//Preconditions
+		assertClassInvariants();
+		assertNotNull(coordinates);
 
 		double distance = 0;
 
@@ -94,21 +115,35 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		//Get distance through Pythagorean Theorem
 		CartesianCoordinate distanceCoordinate = new CartesianCoordinate(distance_x, distance_y, distance_z);
 		distance = distanceCoordinate.calculatePythagorianTheorem();
+		
+
+		//Postconditions
+		assertClassInvariants();
 
 		return distance;
 	}
 
 	public double calculatePythagorianTheorem() {
+		//Preconditions
+		assertClassInvariants();
+		
 		double distance = 0;
 
 		distance = this.getXValue() * this.getXValue() + this.getYValue() * this.getYValue() + this.getZValue() * this.getZValue();
 		distance = Math.sqrt(distance);
+		
+		//Preconditions
+		assertClassInvariants();
 
 		return distance;
 	}
 
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
+		//Preconditions
+		assertClassInvariants();
+		assertNotNull(this);
+		
 		return this;
 	}
 
@@ -119,12 +154,20 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 	@Override
 	public SphericalCoordinate asSphericalCoordinate() {
+		//Preconditions
+		assertClassInvariants();
+		assertNotNull(this);
 
 		double radius = this.calculatePythagorianTheorem();
 		double phi = Math.acos(this.getZValue() / radius);
 		double theta = Math.atan(this.getYValue() / this.getXValue());
 
-		return new SphericalCoordinate(phi, theta, radius);
+		SphericalCoordinate spherCoor = new SphericalCoordinate(phi, theta, radius);
+		
+		//Postconditions
+		assertClassInvariants();
+		
+		return spherCoor;
 	}
 
 	@Override
@@ -138,11 +181,23 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 	@Override
 	public boolean isEqual(ICoordinate coordinates) {
-		return equals(coordinates.asCartesianCoordinate());
+		//Preconditions
+		assertClassInvariants();
+		
+		boolean equal = equals(coordinates.asCartesianCoordinate());
+		
+		//Postconditions
+		assertClassInvariants();
+		
+		return equal;
 	}
 
 	@Override
 	public int hashCode() {
+
+		//Preconditions
+		assertClassInvariants();
+		
 		final int prime = 31;
 		int result = 1;
 		long temp;
@@ -152,6 +207,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(z);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		
+		//Postonditions
+		assertClassInvariants();
+		
 		return result;
 	}
 
@@ -171,5 +230,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
 			return false;
 		return true;
+	}
+	
+	@Override
+	protected void assertClassInvariants() {
+		
+		assertNotNull(this.x);
+		assertNotNull(this.y);
+		assertNotNull(this.z);
+		
+		
+		if(Double.isNaN(this.x)) {
+			throw new IllegalStateException("y is NaN!");
+		}
+		if(Double.isNaN(this.y)) {
+			throw new IllegalStateException("y is NaN!");
+		}
+		if(Double.isNaN(this.z)) {
+			throw new IllegalStateException("z is NaN!");
+		}
+		
 	}
 }

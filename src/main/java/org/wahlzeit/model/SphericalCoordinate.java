@@ -29,6 +29,9 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	 * @methodtype get
 	 */
 	public double getPhi() {
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.phi;
 	}	
 
@@ -36,6 +39,9 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	 * @methodtype get
 	 */
 	public double getTheta() {
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.theta;
 	}
 
@@ -43,6 +49,9 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	 * @methodtype get
 	 */
 	public double getRadius() {
+		//Preconditions
+		assertClassInvariants();
+		
 		return this.radius;
 	}	
 
@@ -50,6 +59,9 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	 * @methodtype set
 	 */
 	public void setPhi(double phi) {
+		//Preconditions
+		assertClassInvariants();
+		
 		this.phi = phi;
 	}		
 
@@ -57,11 +69,26 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	 * @methodtype set
 	 */
 	public void setTheta(double theta) {
+		//Preconditions
+		assertClassInvariants();
+		
 		this.theta = theta;
 	}
 
 	public double calculateRadius() {
-		return doCalculateRadius();
+		
+		double radius;
+		
+		//Preconditions
+		assertClassInvariants();
+		assertNotNull(this);
+		
+		radius = doCalculateRadius();
+		
+		//Postconditions
+		assertClassInvariants();
+		
+		return radius;
 	}
 
 	/*
@@ -75,11 +102,19 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
 
+		//Preconditions
+		assertClassInvariants();
+		assertNotNull(this);
+
 		double x = this.getRadius() * Math.cos(this.getTheta()) * Math.sin(this.getPhi());
 		double y = this.getRadius() * Math.sin(this.getTheta()) * Math.sin(this.getPhi());
 		double z = this.getRadius() * Math.cos(this.getPhi());
+		CartesianCoordinate cartCoor = new CartesianCoordinate(x,y,z);
 
-		return new CartesianCoordinate(x,y,z);
+		//Preconditions
+		assertClassInvariants();
+
+		return cartCoor;
 	}
 
 	@Override
@@ -89,6 +124,10 @@ public class SphericalCoordinate extends AbstractCoordinate {
 
 	@Override
 	public SphericalCoordinate asSphericalCoordinate() {
+
+		//Preconditions
+		assertClassInvariants();
+		
 		return this;
 	}
 
@@ -109,6 +148,10 @@ public class SphericalCoordinate extends AbstractCoordinate {
 
 	@Override
 	public int hashCode() {
+
+		//Preconditions
+		assertClassInvariants();
+		
 		final int prime = 31;
 		int result = 1;
 		long temp;
@@ -118,6 +161,10 @@ public class SphericalCoordinate extends AbstractCoordinate {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(theta);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+
+		//Postconditions
+		assertClassInvariants();
+		
 		return result;
 	}
 
@@ -138,5 +185,24 @@ public class SphericalCoordinate extends AbstractCoordinate {
 			return false;
 		return true;
 	}
+	
+	@Override
+	protected void assertClassInvariants() {
 
+		assertNotNull(this.phi);
+		assertNotNull(this.theta);
+		assertNotNull(this.radius);
+		
+		
+		if(Double.isNaN(this.phi)) {
+			throw new IllegalStateException("y is NaN!");
+		}
+		if(Double.isNaN(this.theta)) {
+			throw new IllegalStateException("y is NaN!");
+		}
+		if(Double.isNaN(this.radius)) {
+			throw new IllegalStateException("z is NaN!");
+		}
+		
+	}
 }
