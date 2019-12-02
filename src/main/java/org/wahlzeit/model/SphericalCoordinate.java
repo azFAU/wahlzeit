@@ -100,21 +100,24 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinate() {
-
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(this);
-
-		double x = this.getRadius() * Math.cos(this.getTheta()) * Math.sin(this.getPhi());
-		double y = this.getRadius() * Math.sin(this.getTheta()) * Math.sin(this.getPhi());
-		double z = this.getRadius() * Math.cos(this.getPhi());
-		CartesianCoordinate cartCoor = new CartesianCoordinate(x,y,z);
-
-		//Preconditions
-		assertClassInvariants();
-
-		return cartCoor;
+	public CartesianCoordinate asCartesianCoordinate() throws IllegalCoordinateException{
+		try {
+			//Preconditions
+			assertClassInvariants();
+			assertNotNull(this);
+	
+			double x = this.getRadius() * Math.cos(this.getTheta()) * Math.sin(this.getPhi());
+			double y = this.getRadius() * Math.sin(this.getTheta()) * Math.sin(this.getPhi());
+			double z = this.getRadius() * Math.cos(this.getPhi());
+			CartesianCoordinate cartCoor = new CartesianCoordinate(x,y,z);
+	
+			//Preconditions
+			assertClassInvariants();
+	
+			return cartCoor;
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in asCartesianCoordinate", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 
 	@Override
@@ -123,12 +126,15 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public SphericalCoordinate asSphericalCoordinate() {
-
-		//Preconditions
-		assertClassInvariants();
-		
-		return this;
+	public SphericalCoordinate asSphericalCoordinate() throws IllegalCoordinateException {
+		try {
+			//Preconditions
+			assertClassInvariants();
+			
+			return this;
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in asSphericalCoordinate", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 
 	@Override
@@ -176,6 +182,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		SphericalCoordinate other = (SphericalCoordinate) obj;
 		if (Double.doubleToLongBits(phi) != Double.doubleToLongBits(other.phi))
 			return false;
@@ -195,13 +202,13 @@ public class SphericalCoordinate extends AbstractCoordinate {
 		
 		
 		if(Double.isNaN(this.phi)) {
-			throw new IllegalStateException("y is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.phi);
 		}
 		if(Double.isNaN(this.theta)) {
-			throw new IllegalStateException("y is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.theta);
 		}
 		if(Double.isNaN(this.radius)) {
-			throw new IllegalStateException("z is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.radius);
 		}
 		
 	}

@@ -4,40 +4,48 @@ public abstract class AbstractCoordinate implements ICoordinate {
 	
 	public AbstractCoordinate() { }
 	
-	public abstract CartesianCoordinate asCartesianCoordinate();
+	public abstract CartesianCoordinate asCartesianCoordinate() throws IllegalCoordinateException;
 	
-	public double getCartesianDistance(ICoordinate coordinates) {
-		double cartesianDistance;
-		
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(coordinates);
-
-		CartesianCoordinate cartesianCoordinates = coordinates.asCartesianCoordinate();
-		cartesianDistance = this.doGetCartesianDistance(cartesianCoordinates);
-		
-		//Postcondition
-		assertClassInvariants();
-		
-		return cartesianDistance;	
+	public double getCartesianDistance(ICoordinate coordinates) throws IllegalCoordinateException {
+		try {
+			double cartesianDistance;
+			
+			//Preconditions
+			assertClassInvariants();
+			assertNotNull(coordinates);
+	
+			CartesianCoordinate cartesianCoordinates = coordinates.asCartesianCoordinate();
+			cartesianDistance = this.doGetCartesianDistance(cartesianCoordinates);
+			
+			//Postcondition
+			assertClassInvariants();
+			
+			return cartesianDistance;	
+		}catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in getCartesianDistance", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 	
 	public abstract double doGetCartesianDistance(CartesianCoordinate coordinates);
 	
-	public abstract SphericalCoordinate asSphericalCoordinate();
+	public abstract SphericalCoordinate asSphericalCoordinate() throws IllegalCoordinateException;
 	
-	public double getCentralAngle(ICoordinate coordinates) {
-		double centralAngle;
-		
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(coordinates);
-		
-		centralAngle = doGetCentralAngle(coordinates);
-		
-		assertClassInvariants();
-		
-		return centralAngle;
+	public double getCentralAngle(ICoordinate coordinates) throws IllegalCoordinateException {
+		try {
+			double centralAngle;
+			
+			//Preconditions
+			assertClassInvariants();
+			assertNotNull(coordinates);
+			
+			centralAngle = doGetCentralAngle(coordinates);
+			
+			assertClassInvariants();
+			
+			return centralAngle;	
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in getCentralAngle", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 	
 	public abstract double doGetCentralAngle(ICoordinate coordinates);

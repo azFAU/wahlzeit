@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Test cases for a variety of value object classes.
@@ -129,25 +130,35 @@ public class ValueTest {
 	
 	/**
 	 * Checks distance between two points
+	 * @throws Exception 
 	 */
 	@Test
-	public void testCartesianDistanceNotZero() {
-		CartesianCoordinate coordinates = new CartesianCoordinate(1,1,1);
-		Location locationOne = new Location(); //Coordinates are 0,0,0
-		Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
-	
-		assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == Math.sqrt(3));
+	public void testCartesianDistanceNotZero() throws Exception {
+		try {
+			CartesianCoordinate coordinates = new CartesianCoordinate(1,1,1);
+			Location locationOne = new Location(); //Coordinates are 0,0,0
+			Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
+		
+			assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == Math.sqrt(3));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
 	 * Checks distance between two points for distance = 0
+	 * @throws Exception 
 	 */
 	@Test
-	public void testCartesianDistanceZero() {
-		Location locationOne = new Location(); //Coordinates are 0,0,0
-		Location locationTwo = new Location(); //Coordinates are 0,0,0
-	
-		assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == 0);
+	public void testCartesianDistanceZero() throws Exception {
+		try {
+			Location locationOne = new Location(); //Coordinates are 0,0,0
+			Location locationTwo = new Location(); //Coordinates are 0,0,0
+		
+			assert(locationOne.getCoordinate().getCartesianDistance(locationTwo.getCoordinate()) == 0);
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -155,11 +166,15 @@ public class ValueTest {
 	 */
 	@Test
 	public void testIsEqualCartesianTrue() {
-		CartesianCoordinate coordinates = new CartesianCoordinate(23,45,56);
-		Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
-		Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
-	
-		assert(locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
+		try {
+			CartesianCoordinate coordinates = new CartesianCoordinate(23,45,56);
+			Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
+			Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
+		
+			assert(locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -167,12 +182,16 @@ public class ValueTest {
 	 */
 	@Test
 	public void testIsEqualCartesianFalse() {
-		CartesianCoordinate coordinatesOne = new CartesianCoordinate(23,45,56);
-		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(56,45,23);
-		Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
-		Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
-	
-		assert(!locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
+		try {
+			CartesianCoordinate coordinatesOne = new CartesianCoordinate(23,45,56);
+			CartesianCoordinate coordinatesTwo = new CartesianCoordinate(56,45,23);
+			Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
+			Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
+		
+			assert(!locationOne.getCoordinate().isEqual(locationTwo.getCoordinate()));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -180,10 +199,14 @@ public class ValueTest {
 	 */
 	@Test
 	public void testSphericalDistanceNotZero() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
-		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
-	
-		assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+			SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+		
+			assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -191,10 +214,14 @@ public class ValueTest {
 	 */
 	@Test
 	public void testSphericalDistanceZero() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
-		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
-	
-		assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+			SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+		
+			assert(coordinatesOne.asCartesianCoordinate().getCartesianDistance(coordinatesTwo) == 0);
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -202,10 +229,14 @@ public class ValueTest {
 	 */
 	@Test
 	public void testIsEqualSphericalTrue() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
-		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
-	
-		assert(coordinatesOne.isEqual(coordinatesTwo));
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+			SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 0, 0);
+		
+			assert(coordinatesOne.isEqual(coordinatesTwo));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -213,10 +244,14 @@ public class ValueTest {
 	 */
 	@Test
 	public void testIsEqualSphericalFalse() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
-		SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 1, 0);
-	
-		assert(!coordinatesOne.isEqual(coordinatesTwo));
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0, 0, 0);
+			SphericalCoordinate coordinatesTwo = new SphericalCoordinate(0, 1, 0);
+		
+			assert(!coordinatesOne.isEqual(coordinatesTwo));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -224,14 +259,18 @@ public class ValueTest {
 	 */
 	@Test
 	public void testCartesianSphericalConversion() {
-
-		CartesianCoordinate coordinatesOne = new CartesianCoordinate(0,0,0);
-		SphericalCoordinate coordinatesTwo = coordinatesOne.asSphericalCoordinate();
-		assert(coordinatesTwo.isEqual(coordinatesOne));
-
-		CartesianCoordinate coordinatesThree = new CartesianCoordinate(1,2,3);
-		SphericalCoordinate coordinatesFour = coordinatesThree.asSphericalCoordinate();
-		assert(coordinatesFour.isEqual(coordinatesThree));
+		try {
+	
+			CartesianCoordinate coordinatesOne = new CartesianCoordinate(0,0,0);
+			SphericalCoordinate coordinatesTwo = coordinatesOne.asSphericalCoordinate();
+			assert(coordinatesTwo.isEqual(coordinatesOne));
+	
+			CartesianCoordinate coordinatesThree = new CartesianCoordinate(1,2,3);
+			SphericalCoordinate coordinatesFour = coordinatesThree.asSphericalCoordinate();
+			assert(coordinatesFour.isEqual(coordinatesThree));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 	
 	/**
@@ -239,14 +278,17 @@ public class ValueTest {
 	 */
 	@Test
 	public void testSphericalCartesianConversion() {
-
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
-		CartesianCoordinate coordinatesTwo = coordinatesOne.asCartesianCoordinate();
-		assert(coordinatesTwo.isEqual(coordinatesOne));
-
-		SphericalCoordinate coordinatesThree = new SphericalCoordinate(4,5,6);
-		CartesianCoordinate coordinatesFour = coordinatesThree.asCartesianCoordinate();
-		assert(coordinatesFour.isEqual(coordinatesThree));
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
+			CartesianCoordinate coordinatesTwo = coordinatesOne.asCartesianCoordinate();
+			assert(coordinatesTwo.isEqual(coordinatesOne));
+	
+			SphericalCoordinate coordinatesThree = new SphericalCoordinate(4,5,6);
+			CartesianCoordinate coordinatesFour = coordinatesThree.asCartesianCoordinate();
+			assert(coordinatesFour.isEqual(coordinatesThree));
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 
 	/**
@@ -254,9 +296,13 @@ public class ValueTest {
 	 */
 	@Test
 	public void testCartesianSphericalDistance() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
-		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,2,0);
-		assert(coordinatesTwo.getCartesianDistance(coordinatesOne) == 2);
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,0);
+			CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,2,0);
+			assert(coordinatesTwo.getCartesianDistance(coordinatesOne) == 2);
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 
 	/**
@@ -264,8 +310,12 @@ public class ValueTest {
 	 */
 	@Test
 	public void testSphericalCartesianDistance() {
-		SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,1);
-		CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,0,0);
-		assert(coordinatesOne.getCartesianDistance(coordinatesTwo) == 1);
+		try {
+			SphericalCoordinate coordinatesOne = new SphericalCoordinate(0,0,1);
+			CartesianCoordinate coordinatesTwo = new CartesianCoordinate(0,0,0);
+			assert(coordinatesOne.getCartesianDistance(coordinatesTwo) == 1);
+		} catch (IllegalCoordinateException e) {
+			fail("Unexpected IllegalCoordinateException (" + e.getInvalidClass() + "): " + e.getMessage() + " in variable " + e.getInvalidValue());
+		}
 	}
 }

@@ -139,35 +139,47 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinate() {
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(this);
-		
-		return this;
+	public CartesianCoordinate asCartesianCoordinate() throws IllegalCoordinateException {
+		try {
+			//Preconditions
+			assertClassInvariants();
+			assertNotNull(this);
+			
+			return this;
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in asCartesianCoordinate", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 
 	@Override
 	public double doGetCartesianDistance(CartesianCoordinate coordinates) {
-		return getDistance(coordinates);
+		try {
+			return getDistance(coordinates);
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException("Error in doGetCartesianDistance", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 
 	@Override
-	public SphericalCoordinate asSphericalCoordinate() {
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(this);
-
-		double radius = this.calculatePythagorianTheorem();
-		double phi = Math.acos(this.getZValue() / radius);
-		double theta = Math.atan(this.getYValue() / this.getXValue());
-
-		SphericalCoordinate spherCoor = new SphericalCoordinate(phi, theta, radius);
-		
-		//Postconditions
-		assertClassInvariants();
-		
-		return spherCoor;
+	public SphericalCoordinate asSphericalCoordinate() throws IllegalCoordinateException {
+		try {
+			//Preconditions
+			assertClassInvariants();
+			assertNotNull(this);
+	
+			double radius = this.calculatePythagorianTheorem();
+			double phi = Math.acos(this.getZValue() / radius);
+			double theta = Math.atan(this.getYValue() / this.getXValue());
+	
+			SphericalCoordinate spherCoor = new SphericalCoordinate(phi, theta, radius);
+			
+			//Postconditions
+			assertClassInvariants();
+			
+			return spherCoor;
+		} catch (IllegalCoordinateException e) {
+			throw new IllegalCoordinateException(" Error in asSphericalCoordinate", e.getInvalidClass(), e.getInvalidValue());
+		}
 	}
 
 	@Override
@@ -241,13 +253,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		
 		
 		if(Double.isNaN(this.x)) {
-			throw new IllegalStateException("y is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.x);
 		}
 		if(Double.isNaN(this.y)) {
-			throw new IllegalStateException("y is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.y);
 		}
 		if(Double.isNaN(this.z)) {
-			throw new IllegalStateException("z is NaN!");
+			throw new IllegalCoordinateException(" Error in assertClassInvariants", CartesianCoordinate.class.getName(), this.y);
 		}
 		
 	}

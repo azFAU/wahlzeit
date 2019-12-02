@@ -19,14 +19,22 @@ public class JapanPhoto extends Photo {
     /**
      * @methodtype constructor
      */
-    public JapanPhoto(PhotoId myId) {
+    public JapanPhoto(PhotoId myId) {    	
         super(myId);
+        
+    	if(myId == null) {
+    		throw new NullPointerException();
+    	}
     }
 
     /**
      * @methodtype get
      */
     public String getPrefecture() {
+    	if(this.prefecture == null) {
+    		throw new NullPointerException();
+    	}
+    	
     	String prefecture = new String(this.prefecture);
         return prefecture;
     }
@@ -35,6 +43,9 @@ public class JapanPhoto extends Photo {
      * @methodtype set
      */
     public void setprefecture(String prefecture) {
+    	if(prefecture == null) {
+    		throw new NullPointerException();
+    	}
         this.prefecture = new String(prefecture);
     }
 
@@ -42,6 +53,10 @@ public class JapanPhoto extends Photo {
      * @methodtype get
      */
     public String getPOI() {
+    	if(this.poi == null) {
+    		throw new NullPointerException();
+    	}
+    	
     	String poi = new String(this.poi);
         return poi;
     }
@@ -50,6 +65,10 @@ public class JapanPhoto extends Photo {
      * @methodtype set
      */
     public void setPOI(String poi) {
+    	if(poi == null) {
+    		throw new NullPointerException();
+    	}
+    	
         this.poi = new String(poi);
     }
 
