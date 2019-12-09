@@ -1,10 +1,13 @@
 package org.wahlzeit.model;
 
+import java.lang.Math;
+import java.util.Iterator;
+
 public class SphericalCoordinate extends AbstractCoordinate {
 
-	protected double phi;
-	protected double theta;
-	protected double radius;
+	protected final double phi;
+	protected final double theta;
+	protected final double radius;
 
 	/*
 	 * Constructor of coordinate object
@@ -23,6 +26,21 @@ public class SphericalCoordinate extends AbstractCoordinate {
 		this.phi = phi;
 		this.theta = theta;
 		this.radius = radius;
+	}
+	
+	public static SphericalCoordinate getSphericalCoordinate(double phi, double theta, double radius) {
+		SphericalCoordinate newCoor = new SphericalCoordinate(phi, theta, radius);
+		SphericalCoordinate check;
+		
+		Iterator<AbstractCoordinate> coordinatesIterator = AbstractCoordinate.listOfCoordinates.iterator();
+		while(coordinatesIterator.hasNext()) {
+			check = coordinatesIterator.next().asSphericalCoordinate();
+			if (newCoor.isEqual(check))
+					return check;
+		}
+		
+		AbstractCoordinate.listOfCoordinates.add(newCoor);
+		return newCoor;
 	}
 
 	/**
@@ -58,24 +76,34 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	/**
 	 * @methodtype set
 	 */
-	public void setPhi(double phi) {
+	public SphericalCoordinate setPhi(double phi) {
 		//Preconditions
 		assertClassInvariants();
 		
-		this.phi = phi;
+		SphericalCoordinate newCoor = new SphericalCoordinate(phi, this.theta, this.radius);
+		
+		//Postconditions
+		newCoor.assertClassInvariants();
+		
+		return newCoor;
 	}		
 
 	/**
 	 * @methodtype set
 	 */
-	public void setTheta(double theta) {
+	public SphericalCoordinate setTheta(double theta) {
 		//Preconditions
 		assertClassInvariants();
 		
-		this.theta = theta;
+		SphericalCoordinate newCoor = new SphericalCoordinate(this.phi, theta, this.radius);
+		
+		//Postconditions
+		newCoor.assertClassInvariants();
+		
+		return newCoor;
 	}
 
-	public double calculateRadius() {
+	private double calculateRadius() {
 		
 		double radius;
 		
@@ -94,7 +122,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
 	/*
 	 * Uses the CartesianCoordinate's method to calculate the radius
 	 */
-	public double doCalculateRadius() {
+	private double doCalculateRadius() {
 		CartesianCoordinate coordinates = this.asCartesianCoordinate();
 		return coordinates.calculatePythagorianTheorem();
 	}
@@ -106,18 +134,25 @@ public class SphericalCoordinate extends AbstractCoordinate {
 			assertClassInvariants();
 			assertNotNull(this);
 	
-			double x = this.getRadius() * Math.cos(this.getTheta()) * Math.sin(this.getPhi());
-			double y = this.getRadius() * Math.sin(this.getTheta()) * Math.sin(this.getPhi());
-			double z = this.getRadius() * Math.cos(this.getPhi());
-			CartesianCoordinate cartCoor = new CartesianCoordinate(x,y,z);
+			CartesianCoordinate cartCoor = doAsCartesianCoordinate();
 	
-			//Preconditions
-			assertClassInvariants();
+			//Postconditions
+			cartCoor.assertClassInvariants();
+			this.assertClassInvariants();
 	
 			return cartCoor;
 		} catch (IllegalCoordinateException e) {
 			throw new IllegalCoordinateException("Error in asCartesianCoordinate", e.getInvalidClass(), e.getInvalidValue());
 		}
+	}
+	
+	protected CartesianCoordinate doAsCartesianCoordinate() {
+		double x = this.getRadius() * Math.cos(this.getTheta()) * Math.sin(this.getPhi());
+		double y = this.getRadius() * Math.sin(this.getTheta()) * Math.sin(this.getPhi());
+		double z = this.getRadius() * Math.cos(this.getPhi());
+		CartesianCoordinate cartCoor = new CartesianCoordinate(x,y,z);
+		
+		return cartCoor;
 	}
 
 	@Override

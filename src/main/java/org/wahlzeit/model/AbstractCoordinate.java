@@ -1,6 +1,11 @@
 package org.wahlzeit.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class AbstractCoordinate implements ICoordinate {
+	
+	static List<AbstractCoordinate> listOfCoordinates = new ArrayList<AbstractCoordinate>();
 	
 	public AbstractCoordinate() { }
 	
@@ -26,7 +31,7 @@ public abstract class AbstractCoordinate implements ICoordinate {
 		}
 	}
 	
-	public abstract double doGetCartesianDistance(CartesianCoordinate coordinates);
+	protected abstract double doGetCartesianDistance(CartesianCoordinate coordinates);
 	
 	public abstract SphericalCoordinate asSphericalCoordinate() throws IllegalCoordinateException;
 	
@@ -48,7 +53,7 @@ public abstract class AbstractCoordinate implements ICoordinate {
 		}
 	}
 	
-	public abstract double doGetCentralAngle(ICoordinate coordinates);
+	protected abstract double doGetCentralAngle(ICoordinate coordinates);
 	
 	public abstract boolean isEqual(ICoordinate coordinates);
 	

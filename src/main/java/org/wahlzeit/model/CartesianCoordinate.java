@@ -1,14 +1,17 @@
 package org.wahlzeit.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
 import java.lang.Math;
 
 /*
  * This class specifies specific cartesian coordinates x, y, z
  */
 public class CartesianCoordinate extends AbstractCoordinate {
-	protected double x;
-	protected double y;
-	protected double z;
+	protected final double x;
+	protected final double y;
+	protected final double z;
 
 	/*
 	 * Constructor of coordinate object
@@ -27,6 +30,21 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public static CartesianCoordinate getCartesianCoordinate(double x, double y, double z) {
+		CartesianCoordinate newCoor = new CartesianCoordinate(x, y, z);
+		CartesianCoordinate check;
+		
+		Iterator<AbstractCoordinate> coordinatesIterator = AbstractCoordinate.listOfCoordinates.iterator();
+		while(coordinatesIterator.hasNext()) {
+			check = coordinatesIterator.next().asCartesianCoordinate();
+			if (newCoor.isEqual(check))
+					return check;
+		}
+
+		AbstractCoordinate.listOfCoordinates.add(newCoor);
+		return newCoor;
 	}
 
 	/**
@@ -62,31 +80,46 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	/**
 	 * @methodtype set
 	 */
-	public void setXValue(double x) {		
+	public CartesianCoordinate setXValue(double x) {		
 		//Preconditions
 		assertClassInvariants();
 		
-		this.x = x;
+		CartesianCoordinate newCoor = new CartesianCoordinate(x, this.y, this.z);
+		
+		//Postconditions
+		newCoor.assertClassInvariants();
+		
+		return newCoor;
 	}	
 
 	/**
 	 * @methodtype set
 	 */
-	public void setYValue(double y) {
+	public CartesianCoordinate setYValue(double y) {
 		//Preconditions
 		assertClassInvariants();
 		
-		this.y = y;
+		CartesianCoordinate newCoor = new CartesianCoordinate(this.x, y, this.z);
+		
+		//Postconditions
+		newCoor.assertClassInvariants();
+		
+		return newCoor;
 	}	
 
 	/**
 	 * @methodtype set
 	 */
-	public void setZValue(double z) {
+	public CartesianCoordinate setZValue(double z) {
 		//Preconditions
 		assertClassInvariants();
 		
-		this.z = z;
+		CartesianCoordinate newCoor = new CartesianCoordinate(this.x, this.y, z);
+		
+		//Postconditions
+		newCoor.assertClassInvariants();
+		
+		return newCoor;
 	}
 
 	/*
@@ -95,32 +128,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	 */
 	public boolean isEqual(CartesianCoordinate coordinates) {
 		return this.equals(coordinates);
-	}
-
-	/*
-	 * Gets distance between two coordinate objects
-	 */
-	public double getDistance(CartesianCoordinate coordinates) {
-		//Preconditions
-		assertClassInvariants();
-		assertNotNull(coordinates);
-
-		double distance = 0;
-
-		//Get distance between every single coordinate
-		double distance_x = this.x - coordinates.getXValue();
-		double distance_y = this.y - coordinates.getYValue();
-		double distance_z = this.z - coordinates.getZValue();
-
-		//Get distance through Pythagorean Theorem
-		CartesianCoordinate distanceCoordinate = new CartesianCoordinate(distance_x, distance_y, distance_z);
-		distance = distanceCoordinate.calculatePythagorianTheorem();
-		
-
-		//Postconditions
-		assertClassInvariants();
-
-		return distance;
 	}
 
 	public double calculatePythagorianTheorem() {
@@ -152,9 +159,20 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public double doGetCartesianDistance(CartesianCoordinate coordinates) {
+	protected double doGetCartesianDistance(CartesianCoordinate coordinates) {
 		try {
-			return getDistance(coordinates);
+			double distance = 0;
+
+			//Get distance between every single coordinate
+			double distance_x = this.x - coordinates.getXValue();
+			double distance_y = this.y - coordinates.getYValue();
+			double distance_z = this.z - coordinates.getZValue();
+
+			//Get distance through Pythagorean Theorem
+			CartesianCoordinate distanceCoordinate = new CartesianCoordinate(distance_x, distance_y, distance_z);
+			distance = distanceCoordinate.calculatePythagorianTheorem();
+			
+			return distance;
 		} catch (IllegalCoordinateException e) {
 			throw new IllegalCoordinateException("Error in doGetCartesianDistance", e.getInvalidClass(), e.getInvalidValue());
 		}
@@ -167,11 +185,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 			assertClassInvariants();
 			assertNotNull(this);
 	
-			double radius = this.calculatePythagorianTheorem();
-			double phi = Math.acos(this.getZValue() / radius);
-			double theta = Math.atan(this.getYValue() / this.getXValue());
-	
-			SphericalCoordinate spherCoor = new SphericalCoordinate(phi, theta, radius);
+			SphericalCoordinate spherCoor = doAsSphericalCoordinate();
 			
 			//Postconditions
 			assertClassInvariants();
@@ -180,6 +194,16 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		} catch (IllegalCoordinateException e) {
 			throw new IllegalCoordinateException(" Error in asSphericalCoordinate", e.getInvalidClass(), e.getInvalidValue());
 		}
+	}
+	
+	protected SphericalCoordinate doAsSphericalCoordinate() {
+		double radius = this.calculatePythagorianTheorem();
+		double phi = Math.acos(this.getZValue() / radius);
+		double theta = Math.atan(this.getYValue() / this.getXValue());
+
+		SphericalCoordinate spherCoor = new SphericalCoordinate(phi, theta, radius);
+		
+		return spherCoor;
 	}
 
 	@Override

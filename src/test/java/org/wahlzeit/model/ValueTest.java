@@ -135,7 +135,7 @@ public class ValueTest {
 	@Test
 	public void testCartesianDistanceNotZero() throws Exception {
 		try {
-			CartesianCoordinate coordinates = new CartesianCoordinate(1,1,1);
+			CartesianCoordinate coordinates = CartesianCoordinate.getCartesianCoordinate(1,1,1);
 			Location locationOne = new Location(); //Coordinates are 0,0,0
 			Location locationTwo = new Location(coordinates); //Coordinates are 1,1,1
 		
@@ -167,7 +167,7 @@ public class ValueTest {
 	@Test
 	public void testIsEqualCartesianTrue() {
 		try {
-			CartesianCoordinate coordinates = new CartesianCoordinate(23,45,56);
+			CartesianCoordinate coordinates = CartesianCoordinate.getCartesianCoordinate(23,45,56);
 			Location locationOne = new Location(coordinates); //Coordinates are 23,45,56
 			Location locationTwo = new Location(coordinates); //Coordinates are 23,45,56
 		
@@ -183,8 +183,8 @@ public class ValueTest {
 	@Test
 	public void testIsEqualCartesianFalse() {
 		try {
-			CartesianCoordinate coordinatesOne = new CartesianCoordinate(23,45,56);
-			CartesianCoordinate coordinatesTwo = new CartesianCoordinate(56,45,23);
+			CartesianCoordinate coordinatesOne = CartesianCoordinate.getCartesianCoordinate(23,45,56);
+			CartesianCoordinate coordinatesTwo = CartesianCoordinate.getCartesianCoordinate(56,45,23);
 			Location locationOne = new Location(coordinatesOne); //Coordinates are 23,45,56
 			Location locationTwo = new Location(coordinatesTwo); //Coordinates are 56,45,23
 		
@@ -261,11 +261,11 @@ public class ValueTest {
 	public void testCartesianSphericalConversion() {
 		try {
 	
-			CartesianCoordinate coordinatesOne = new CartesianCoordinate(0,0,0);
+			CartesianCoordinate coordinatesOne = CartesianCoordinate.getCartesianCoordinate(0,0,0);
 			SphericalCoordinate coordinatesTwo = coordinatesOne.asSphericalCoordinate();
 			assert(coordinatesTwo.isEqual(coordinatesOne));
 	
-			CartesianCoordinate coordinatesThree = new CartesianCoordinate(1,2,3);
+			CartesianCoordinate coordinatesThree = CartesianCoordinate.getCartesianCoordinate(1,2,3);
 			SphericalCoordinate coordinatesFour = coordinatesThree.asSphericalCoordinate();
 			assert(coordinatesFour.isEqual(coordinatesThree));
 		} catch (IllegalCoordinateException e) {
