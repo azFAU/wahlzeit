@@ -28,10 +28,17 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.io.File;
 import java.util.logging.Logger;
-
+import PatternInstance.*;
 /**
  * A simple ServletContextListener to startup and shutdown the Flowers application.
  */
+@PatternInstance(
+		patternName = "Observer",
+		participants = {
+				"Wahlzeit",
+				"ServletContextEvent"
+		}
+)
 public class Wahlzeit implements ServletContextListener {
 
 	private static final Logger log = Logger.getLogger(Wahlzeit.class.getName());

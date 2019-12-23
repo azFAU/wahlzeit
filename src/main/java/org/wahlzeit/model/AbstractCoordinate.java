@@ -3,6 +3,17 @@ package org.wahlzeit.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import PatternInstance.*;
+
+@PatternInstance(
+		patternName = "Template Method",
+		participants = {
+				"AbstractCoordinate",
+				"CartesianCoordinate",
+				"SphericalCoordinate"
+		}
+)
+
 public abstract class AbstractCoordinate implements ICoordinate {
 	
 	static List<AbstractCoordinate> listOfCoordinates = new ArrayList<AbstractCoordinate>();

@@ -5,6 +5,15 @@ import java.util.List;
 import java.util.Iterator;
 import java.lang.Math;
 
+import PatternInstance.*;
+
+@PatternInstance(
+		patternName = "Composite",
+		participants = {
+				"CartesianCoordinate",
+				"SphericalCoordinate"
+		}
+)
 /*
  * This class specifies specific cartesian coordinates x, y, z
  */

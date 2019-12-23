@@ -40,9 +40,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import PatternInstance.*;
+
 /**
  * A photo manager provides access to and manages photos.
  */
+@PatternInstance(
+		patternName = "Singleton",
+		participants = {
+				"PhotoManager"
+		}
+)
 public class PhotoManager extends ObjectManager {
 
 	/**

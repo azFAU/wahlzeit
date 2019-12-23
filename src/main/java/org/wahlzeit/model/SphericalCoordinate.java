@@ -3,6 +3,16 @@ package org.wahlzeit.model;
 import java.lang.Math;
 import java.util.Iterator;
 
+import PatternInstance.PatternInstance;
+
+@PatternInstance(
+		patternName = "Composite",
+		participants = {
+				"CartesianCoordinate",
+				"SphericalCoordinate"
+		}
+)
+
 public class SphericalCoordinate extends AbstractCoordinate {
 
 	protected final double phi;
